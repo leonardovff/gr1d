@@ -8,6 +8,18 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
+    &::after {
+        content: "";
+        background: url("/assets/img/banner-main.svg") no-repeat right bottom;
+        background-size: 100% auto;
+        opacity: 0.35;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        z-index: -1;   
+    }
 }
 h1{
     margin-bottom: 2.5em;
@@ -16,8 +28,14 @@ form{
     width: 91%;
 }
 mat-form-field{
-    margin-bottom: 0.5em;
+    margin-bottom: 0.6em;
+}
+mat-icon{
+    color: #757575;
 }
 mat-icon[matPrefix]{
     margin-right: 0.5em;
+}
+button{
+    padding: 0.5em;   
 }

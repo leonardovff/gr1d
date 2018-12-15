@@ -11,10 +11,12 @@ export class LoginComponent implements OnInit {
 
   form = new FormGroup({
     'email': new FormControl(null, [
-      Validators.required, Validators.maxLength(191)
+      Validators.required, 
+      Validators.maxLength(191),
+      Validators.email
     ]),
     'password': new FormControl(null, [
-      Validators.required,Validators.maxLength(191)
+      Validators.required
     ])
   })
 
@@ -22,6 +24,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+  login(){
   }
 
 }
