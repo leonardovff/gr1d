@@ -8,11 +8,12 @@
     width: 100vw;
     justify-content: center;
     align-items: center;
+    
     &::after {
         content: "";
         background: url("/assets/img/banner-main.svg") no-repeat right bottom;
         background-size: 100% auto;
-        opacity: 0.35;
+        opacity: 0.3;
         top: 0;
         left: 0;
         bottom: 0;
@@ -20,12 +21,23 @@
         position: absolute;
         z-index: -1;   
     }
+    @media(min-width: 62em){
+        &::after {
+            background-position: calc(100%) calc(100% + 447px);
+        }
+        form {
+            width: 55%;
+        }
+    }
 }
 h1{
     margin-bottom: 2.5em;
 }
-form{
+:host form{
     width: 91%;
+    @media(min-width: 90em){
+        width: 30%;
+    }
 }
 mat-form-field{
     margin-bottom: 0.6em;
