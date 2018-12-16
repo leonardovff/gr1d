@@ -8,4 +8,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     mat-dialog-container{
         padding: 0;
     }
+    @media(min-width: 62em){
+        width: auto;
+        height: auto;
+        min-height: 200px;
+    }
 }

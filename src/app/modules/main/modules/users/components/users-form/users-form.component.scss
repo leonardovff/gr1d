@@ -7,11 +7,12 @@ a{
     }
 }
 mat-list {
-    padding-top: 1.2em;
+    padding: 1.2em 0;
     mat-icon, h4, p{
         color: #323232;
     }
     mat-list-item{
+        box-sizing: border-box;
         padding-left: 0.5em; 
         h4{
             margin-bottom: 0.5em;

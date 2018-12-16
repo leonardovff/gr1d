@@ -413,7 +413,7 @@ export let Users = [
       "name": "Vasquez Flynn",
       "email": "vasquezflynn@parleynet.com",
       "phone": "(915) 584-2780",
-      "password": 123456
+      "password": '123456'
     },
     {
       "id": 52,
