@@ -22,8 +22,7 @@ export class AuthService {
   private getUserFromStorage(){
     let data = localStorage.getItem('user_authenticated');
     if(!data) return null;
-    data = JSON.parse(data);
-    return this.user;
+    return JSON.parse(data);
   }
   private setUser(user: object, toPersist: boolean = true){
     this.currentUser = user;

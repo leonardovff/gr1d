@@ -42,8 +42,12 @@ class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/users') && request.method === 'GET') {
                 // check for fake auth token in header and return users if valid, 
                 // this security is implemented server side in a real application
-                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    return of(new HttpResponse({ status: 200, body: users }));
+                if (request.headers.get('Authorization') === 'Bearer fake_bear_token') {
+                    users.sort((a, b) => {
+                        let lca = a.name.toLowerCase(), lcb = b.name.toLowerCase();
+                        return lca > lcb ? 1 : lca < lcb ? -1 : 0;
+                    });
+                    return of(new HttpResponse({ status: 200, body: [...users] }));
                 } else {
                     // return 401 not authorised if token is null or invalid
                     return throwError({ error: { message: 'Unauthorised' } });

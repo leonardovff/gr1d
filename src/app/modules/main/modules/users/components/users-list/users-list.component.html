@@ -8,6 +8,7 @@
         <mat-icon>search</mat-icon>
     </button>
 </mat-toolbar>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <mat-list>
     <a mat-list-item href="#" *ngFor="let user of users">
         {{ user?.name }} 

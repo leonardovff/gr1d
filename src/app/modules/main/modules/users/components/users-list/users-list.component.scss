@@ -1,3 +1,11 @@
+:host{
+    display: flex;
+    flex-flow: column;
+    margin: 0 auto;
+    @media(min-width: 62em){
+        width: 80%;
+    }
+}
 mat-toolbar{
     position: sticky;
     position: -webkit-sticky;
