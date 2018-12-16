@@ -5,7 +5,8 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h3>Visualização de Cliente</h3>
-    <a *ngIf="user" class="edit" (click)="dialogRef.close()" routerLink="edit" mat-icon-button matTooltip="Editar cliente">
+    <a [disabled]="!user" class="edit" (click)="dialogRef.close()" 
+        routerLink="edit" mat-icon-button matTooltip="Editar cliente">
       <mat-icon>edit</mat-icon>
     </a>
   </mat-toolbar>
