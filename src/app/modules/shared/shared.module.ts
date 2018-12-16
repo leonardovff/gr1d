@@ -30,7 +30,8 @@ import { ShowNamePipe } from './pipes/show-name.pipe';
     ReactiveFormsModule, 
     FormsModule,
     HttpClientModule,
-    FeedbackErrorInputPipe
+    FeedbackErrorInputPipe,
+    ShowNamePipe
   ],
   providers: [
     {

@@ -9,6 +9,7 @@ export class FeedbackErrorInputPipe implements PipeTransform {
     if (!errors) return null;
     let hash = {
       email: "O email fornecido é inválido",
+      phone: "O telefone fornecido é inválido",
       required: "O campo é obrigatório",
     }
     return hash[Object.keys(errors)[0]];

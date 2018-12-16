@@ -5,7 +5,7 @@ export let Users = [
       "name": "Evans Grimes",
       "email": "evansgrimes@parleynet.com",
       "phone": "(842) 423-3328",
-      "password": 123456
+      "password": '123456'
     },
     {
       "id": 1,
@@ -13,7 +13,7 @@ export let Users = [
       "name": "Jill Dodson",
       "email": "jilldodson@parleynet.com",
       "phone": "(842) 546-3880",
-      "password": 123456
+      "password": '123456'
     },
     {
       "id": 2,

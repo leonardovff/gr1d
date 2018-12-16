@@ -13,7 +13,7 @@ export class UsersListComponent implements OnInit {
   users: any = null;
   usersCopy: any = null;
   isLoading: boolean = false;
-  isSearchActived: boolean = true;
+  isSearchActived: boolean = false;
   stringToSearch = "";
   constructor(
     private http: HttpClient,
