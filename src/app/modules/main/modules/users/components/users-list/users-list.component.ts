@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../../../../../environments/environment';
 import { MatSnackBar } from '@angular/material';
+import { SidenavService } from 'src/app/modules/main/main/sidenav.service';
 @Component({
 
   selector: 'users-list',
@@ -13,7 +14,8 @@ export class UsersListComponent implements OnInit {
   isLoading: boolean = false;
   constructor(
     private http: HttpClient,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private sidenav: SidenavService
   ) { }
   ngOnInit() {
     this.loadUsers();

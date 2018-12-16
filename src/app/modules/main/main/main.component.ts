@@ -1,6 +1,8 @@
-import { Component, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, ChangeDetectorRef, OnDestroy, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from '../../shared/services/auth.service';
+import { SidenavService } from './sidenav.service';
+import { MatDrawer } from '@angular/material';
 
 @Component({
   selector: 'app-main',
@@ -10,6 +12,8 @@ import { AuthService } from '../../shared/services/auth.service';
 export class MainComponent implements OnDestroy {
 
   isMobile: MediaQueryList;
+  @ViewChild('matDrawer') matDrawer:  MatDrawer;
+
   private _mobileQueryListener: () => void;
   user: any = null;
   menu = [{
@@ -24,9 +28,13 @@ export class MainComponent implements OnDestroy {
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
-    auth: AuthService
+    private auth: AuthService,
+    private sidenav: SidenavService
   ) {
-    auth.user.subscribe(user => {
+    this.sidenav.toogled.subscribe(() => {
+      this.matDrawer.toggle();
+    });
+    this.auth.user.subscribe(user => {
       this.user = user;
     });
     this.isMobile = media.matchMedia('(max-width: 62em)');
