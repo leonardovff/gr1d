@@ -3,7 +3,7 @@ import { HttpInterceptor, HttpHandler, HttpRequest, HttpEvent, HttpResponse }
   from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment';
+import { environment } from './../../../../environments/environment';
 
 import { AuthService } from './../services/auth.service';
 
@@ -19,7 +19,7 @@ export class ApiInterceptor implements HttpInterceptor {
             req = req.clone({setHeaders: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',
-                'Authorization':  tokenApi
+                'Authorization': "Bearer " + tokenApi
             }});
         }
         return next.handle(req);

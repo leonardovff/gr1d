@@ -1,1 +1,16 @@
-<mat-toolbar>My App</mat-toolbar>
+<mat-toolbar color="primary">
+    <button class="menu" mat-icon-button title="Procurar usuário" type="button">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h2>Clientes</h2>
+    <span class="example-spacer"></span>
+    <button class="search" mat-icon-button title="Procurar usuário" type="button">
+        <mat-icon>search</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-list>
+    <a mat-list-item href="#" *ngFor="let user of users">
+        {{ user?.name }} 
+        <mat-icon>chevron_right</mat-icon>
+    </a>
+</mat-list>

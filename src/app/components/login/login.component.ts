@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from './../../modules/shared/services/auth.service';
 
 @Component({
   selector: 'app-login',

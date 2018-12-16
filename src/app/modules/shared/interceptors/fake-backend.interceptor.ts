@@ -20,13 +20,13 @@ class FakeBackendInterceptor implements HttpInterceptor {
         
         return of(null).pipe(mergeMap(() => {
 
+            // login
             if(request.url.endsWith('/auth') && request.method == 'POST'){
                 let userAuthenticate = users.filter(user => {
                     return user.email === request.body.email && user.password === request.body.password;
                 });
-                // console.log(userAuthenticate );
                 if (userAuthenticate.length) {
-                    userAuthenticate[0]['token'] = Math.random().toString(36).substring(2);
+                    userAuthenticate[0]['token'] = 'fake_bear_token';
                     return of(new HttpResponse({ 
                         status: 200, 
                         body: userAuthenticate[0] 
@@ -40,7 +40,8 @@ class FakeBackendInterceptor implements HttpInterceptor {
  
             // get users
             if (request.url.endsWith('/users') && request.method === 'GET') {
-                // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
+                // check for fake auth token in header and return users if valid, 
+                // this security is implemented server side in a real application
                 if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
                     return of(new HttpResponse({ status: 200, body: users }));
                 } else {

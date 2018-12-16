@@ -15,7 +15,8 @@
                 placeholder="Informe a senha da sua conta" maxlength="50">
         <mat-label>Senha</mat-label>
         <mat-icon matPrefix>fingerprint</mat-icon>
-        <button [title]="isPasswordHide ? 'Mostrar senha' : 'Esconder senha'" matSuffix type="button" mat-icon-button (click)="isPasswordHide = !isPasswordHide">
+        <button matSuffix mat-icon-button [title]="isPasswordHide ? 'Mostrar senha' : 'Esconder senha'" 
+            type="button" (click)="isPasswordHide = !isPasswordHide">
             <mat-icon>{{isPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="form.get('password').invalid">
