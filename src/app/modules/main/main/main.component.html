@@ -1,18 +1,19 @@
-<mat-drawer-container class="example-container">
-    <mat-drawer [mode]="isMobile.matches ? 'over' : 'side'" [opened]="isMobile.matches">
+<mat-drawer-container [autosize]="true" #matDrawerContainer class="example-container">
+    <mat-drawer #matDrawer [mode]="isMobile.matches ? 'over' : 'side'" [opened]="true || !isMobile.matches">
         <mat-toolbar color="primary">
             <mat-toolbar-row>
                 <img src="assets/img/avatar.png" alt="Usuário">
             </mat-toolbar-row>
             <mat-toolbar-row>
-                <h3>Thiago Saldanha</h3>
+                <h3>{{user?.name}}</h3>
             </mat-toolbar-row>
             <mat-toolbar-row>
                 <h4>Cliente</h4>
             </mat-toolbar-row>
         </mat-toolbar>
         <mat-nav-list>
-            <a mat-list-item href="..." *ngFor="let link of menu"> 
+            <a class="mat-primary" mat-list-item *ngFor="let link of menu" [routerLink]="link.router" 
+                routerLinkActive="--active"> 
                 <mat-icon>{{link.icon}}</mat-icon>
                 {{ link.title }}
             </a>

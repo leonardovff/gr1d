@@ -3,6 +3,19 @@ mat-drawer-container{
 }
 mat-drawer{
     width: 84%;
+    @media(min-width: 45em){
+        width: 50%;
+    }
+
+    @media(min-width: 62em){
+        width: 25%;
+    }
+    @media(min-width: 75em){
+        width: 20%;
+    }
+    @media(min-width: 95em){
+        width: 15%;
+    }
 }
 img{
     height: 95%;
@@ -14,6 +27,20 @@ h3, img{
 }
 h4{
     font-size: 0.75em;
+}
+mat-nav-list{
+    padding: 1.5em 0.5em
+}
+mat-nav-list a{
+    margin-bottom: 0.5em;
+    &:last-child{
+        margin-bottom: 0;
+    }
+    &.--active{
+        background: #eee9fd;
+        border-radius: 5px;
+        color: #af95f7;
+    }
 }
 mat-nav-list mat-icon{
     margin-right: 1em;
