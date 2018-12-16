@@ -1,0 +1,20 @@
+mat-drawer-container{
+    height: 100vh;
+}
+mat-drawer{
+    width: 84%;
+}
+img{
+    height: 95%;
+    border-radius: 50%;
+}
+h3, img{
+    position: relative;
+    margin-top: 3em;
+}
+h4{
+    font-size: 0.75em;
+}
+mat-nav-list mat-icon{
+    margin-right: 1em;
+}

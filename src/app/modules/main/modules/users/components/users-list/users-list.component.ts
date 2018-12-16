@@ -4,7 +4,7 @@ import { environment } from './../../../../../../../environments/environment';
 import { MatSnackBar } from '@angular/material';
 @Component({
 
-  selector: 'app-users-list',
+  selector: 'users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
