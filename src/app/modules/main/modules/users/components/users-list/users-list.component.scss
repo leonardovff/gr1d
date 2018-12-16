@@ -33,11 +33,11 @@ mat-toolbar{
     top: 0; 
     z-index: 1000;
 }
-mat-toolbar button {
-    &.menu{
+mat-toolbar{ 
+    button.menu{
         margin-right: 1em;
     }
-    &.search{
+    a.search{
         margin-left: auto;
     }
 }

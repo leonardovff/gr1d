@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-form',
@@ -15,7 +15,8 @@ export class UsersFormComponent implements AfterViewInit {
   constructor(
     private dialog: MatDialog, 
     private http: HttpClient,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
+    private router: Router, 
     private snack: MatSnackBar
   ) { }
   dialogRef = null;
@@ -39,6 +40,9 @@ export class UsersFormComponent implements AfterViewInit {
     this.dialogRef = this.dialog.open(this.dialogTemplate, {
       panelClass: 'modalActions',
       maxWidth: "auto"
+    });
+    this.dialogRef.afterClosed().subscribe(()=>{
+      this.router.navigate(['./../']);
     });
   }
 }
