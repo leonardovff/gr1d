@@ -15,7 +15,10 @@ export class ApiInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         const tokenApi = this.auth.getToken();
-        if(tokenApi && req.url.indexOf(environment.api)!=-1){
+        req = req.clone({
+            url: environment.api + req.url
+        });
+        if(tokenApi){
             req = req.clone({setHeaders: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': '*',

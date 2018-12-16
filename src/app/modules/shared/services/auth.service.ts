@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { environment } from './../../../../environments/environment';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +32,7 @@ export class AuthService {
   login(data: object): Promise<any> { 
     return new Promise((resolve, reject) => {
       this.http
-      .post(environment.api + 'auth', data).subscribe(res => {
+      .post('auth', data).subscribe(res => {
         this.setUser(res);
         resolve();
       }, error => {

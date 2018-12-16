@@ -25,8 +25,10 @@ class FakeBackendInterceptor implements HttpInterceptor {
                 let userAuthenticate = users.filter(user => {
                     return user.email === request.body.email && user.password === request.body.password;
                 });
+                // check password and email
                 if (userAuthenticate.length) {
-                    userAuthenticate[0]['token'] = 'fake_bear_token';
+                    // add bear fake token 
+                    userAuthenticate[0]['token'] = 'fake_bearer_token';
                     return of(new HttpResponse({ 
                         status: 200, 
                         body: userAuthenticate[0] 
@@ -38,11 +40,11 @@ class FakeBackendInterceptor implements HttpInterceptor {
                 }
             }
  
-            // get users
+            // get list of users
             if (request.url.endsWith('/users') && request.method === 'GET') {
                 // check for fake auth token in header and return users if valid, 
                 // this security is implemented server side in a real application
-                if (request.headers.get('Authorization') === 'Bearer fake_bear_token') {
+                if (request.headers.get('Authorization') === 'Bearer fake_bearer_token') {
                     users.sort((a, b) => {
                         let lca = a.name.toLowerCase(), lcb = b.name.toLowerCase();
                         return lca > lcb ? 1 : lca < lcb ? -1 : 0;
@@ -57,11 +59,12 @@ class FakeBackendInterceptor implements HttpInterceptor {
             // get user by id
             if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
-                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                if (request.headers.get('Authorization') === 'Bearer fake_bearer_token') {
                     // find user by id in users array
                     let urlParts = request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     let matchedUsers = users.filter(user => { return user.id === id; });
+                    console.log(matchedUsers);
                     let user = matchedUsers.length ? matchedUsers[0] : null;
  
                     return of(new HttpResponse({ status: 200, body: user }));

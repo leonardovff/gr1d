@@ -6,10 +6,12 @@ import { UsersListComponent } from './components/users-list/users-list.component
 
 import { UsersRoutingModule } from './users-routing.module';
 import { SharedModule } from './../../../shared/shared.module';
+import { UsersFormComponent } from './components/users-form/users-form.component';
 
 @NgModule({
   declarations: [
-    UsersListComponent
+    UsersListComponent,
+    UsersFormComponent
   ],
   imports: [
     HttpClientModule,

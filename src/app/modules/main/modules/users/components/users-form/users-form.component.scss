@@ -1,0 +1,20 @@
+a{
+    &.edit{
+        margin-left: auto;
+    }
+    &:first-child{
+        margin-right: 0.5em;
+    }
+}
+mat-list {
+    padding-top: 1.2em;
+    mat-icon, h4, p{
+        color: #323232;
+    }
+    mat-list-item{
+        padding-left: 0.5em; 
+        h4{
+            margin-bottom: 0.5em;
+        }
+    }
+}

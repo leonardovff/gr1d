@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from './../../../../../../../environments/environment';
 import { MatSnackBar } from '@angular/material';
 import { SidenavService } from 'src/app/modules/main/main/sidenav.service';
 @Component({
@@ -22,7 +21,7 @@ export class UsersListComponent implements OnInit {
   }
   loadUsers(){
     this.isLoading = true;
-    this.http.get(environment.api + 'users').subscribe(
+    this.http.get('users').subscribe(
       res => {
         this.users = res;
         this.isLoading = false;
