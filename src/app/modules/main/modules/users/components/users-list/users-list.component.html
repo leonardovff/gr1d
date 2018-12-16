@@ -1,22 +1,38 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="!isSearchActived">
     <button (click)="sidenav.toogled.emit()" class="menu" mat-icon-button title="Abrir menu" type="button">
         <mat-icon>menu</mat-icon>
     </button>
     <h2>Clientes</h2>
     <span class="example-spacer"></span>
-    <a class="search" mat-icon-button linkRouter="./edit"
+    <a class="search" mat-icon-button (click)="showSearch()"
         title="Procurar usuário" type="button">
         <mat-icon>search</mat-icon>
     </a>
 </mat-toolbar>
+<mat-form-field color="accent" class="searchUser" *ngIf="isSearchActived" appearance="fill">
+    <input #name matInput type="text" autocomplete="off" (input)="search()" autofocus [(ngModel)]="stringToSearch" maxlength="50" 
+    placeholder="Buscar">
+    <button matPrefix mat-icon-button type="button" (click)="closeSearch()">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button *ngIf="stringToSearch != ''" matSuffix mat-icon-button type="button" (click)="showSearch()">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-form-field>
 <a color="accent" routerLink="add" mat-fab title="Cadastrar usuário">
     <mat-icon>add</mat-icon>
 </a>
 <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-<mat-list>
+<mat-list [class.isSearching]="isSearchActived">
     <a mat-list-item routerLink="{{user.id}}" *ngFor="let user of users">
         {{ user?.name }} 
         <mat-icon>chevron_right</mat-icon>
     </a>
+    <mat-list-item *ngIf="isLoading">
+        Carregando lista de usuários
+    </mat-list-item>
+    <mat-list-item *ngIf="!isLoading && isSearchActived && !users?.length">
+        Usuários não encontrados    
+    </mat-list-item>
 </mat-list>
 <router-outlet></router-outlet>

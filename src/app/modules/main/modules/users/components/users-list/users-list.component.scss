@@ -10,7 +10,7 @@
             position: static;
             border-radius: 5px 3px 0 0;
         }
-        mat-toolbar, mat-list{
+        mat-toolbar, mat-list, mat-form-field{
             box-shadow: 0 3px 6px rgba(0,0,0,0.16);
         }
         mat-toolbar button.menu{
@@ -18,6 +18,7 @@
         }
         mat-list{
             height: 60vh;
+            min-height: auto;
             padding: 0.7em 0 0;
             overflow: auto;
         }
@@ -43,7 +44,12 @@ mat-toolbar{
 }
 mat-list{
     padding: 1em 0 3em;
+    min-height: calc(100vh - 100px);
     background-color: white;
+    &.isSearching{
+        position: relative;
+        margin-top: -1.5em;
+    }
 }
 a[mat-list-item]{
     color: #323232;
@@ -63,5 +69,20 @@ a[mat-fab]{
     @media(min-width: 80em){
         bottom: 3.5em;
         right: 3.5em;
+    }
+}
+.searchUser{
+    input{
+        color: white;
+    }
+    background: white;
+    button:first-child{
+        margin-right: 0.5em;
+        position: relative;
+        bottom: 0.15em;
+    }
+    input{
+        position: relative;
+        bottom: 0.5em;
     }
 }

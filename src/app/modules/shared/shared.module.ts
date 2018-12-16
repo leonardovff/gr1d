@@ -10,11 +10,13 @@ import { fakeBackendProvider } from './interceptors/fake-backend.interceptor';
 
 import { FeedbackErrorInputPipe } from './pipes/feedback-error-input.pipe';
 import { MaskDirective } from './directives/mask.directive';
+import { ShowNamePipe } from './pipes/show-name.pipe';
 
 @NgModule({
   declarations: [
     FeedbackErrorInputPipe,
-    MaskDirective
+    MaskDirective,
+    ShowNamePipe
   ],
   imports: [
     CommonModule, 

@@ -5,7 +5,7 @@
      class="back" (click)="isLoading ? '' : dialogRef.close( this.id ? 0 : 2)" matTooltip="Editar cliente">
       <mat-icon>close</mat-icon>
     </a>
-    <h3>Edição de Cliente</h3>
+    <h3>{{this.id ? 'Edição de Cliente' : 'Cadastrar Cliente' }}</h3>
     <button mat-flat-button  [disabled]="!form.valid" title="Salvar modificações"  
         class="save" (click)="save()" matTooltip="Editar cliente">
       SALVAR
