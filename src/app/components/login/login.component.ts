@@ -15,12 +15,12 @@ export class LoginComponent {
   isLoading: boolean = false;
 
   form:FormGroup = new FormGroup({
-    'email': new FormControl('leonardovff@gmail.com', [
+    'email': new FormControl(null, [
       Validators.required, 
       Validators.maxLength(191),
       Validators.email
     ]),
-    'password': new FormControl('123456', [
+    'password': new FormControl(null, [
       Validators.required
     ])
   })

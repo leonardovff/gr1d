@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { CustomMaterialModule } from './modules/custom-material/custom-material.module'
+import { SharedModule } from './modules/shared/shared.module'
 
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { fakeBackendProvider } from './interceptors/fake-backend.interceptor';
@@ -13,22 +12,16 @@ import { fakeBackendProvider } from './interceptors/fake-backend.interceptor';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 
-import { FeedbackErrorInputPipe } from './pipes/feedback-error-input.pipe';
-
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    FeedbackErrorInputPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
-    CustomMaterialModule,
-    ReactiveFormsModule, 
-    FormsModule
+    SharedModule
   ],
   providers: [
     {
