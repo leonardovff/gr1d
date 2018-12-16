@@ -42,6 +42,9 @@ export class AuthService {
       });
     });
   }
+  logout(){
+    this.setUser(null)
+  }
   getToken(){
     if(this.currentUser){
       return this.currentUser['token'];
