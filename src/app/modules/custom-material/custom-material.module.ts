@@ -15,4 +15,4 @@ import {
     MatIconModule, MatSnackBarModule, MatProgressBarModule
   ],
 })
-export class CustomMaterialModuleModule { }
+export class CustomMaterialModule { }

@@ -11,22 +11,22 @@ class FakeBackendInterceptor implements HttpInterceptor {
     constructor() { }
  
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // array in local storage for registered users
+        
         let users: any[] = JSON.parse(localStorage.getItem('users')) || [];
         if(!users.length){
             users = Users;
             localStorage.setItem('users', JSON.stringify(users));
         }
-        // wrap in delayed observable to simulate server api call
+        
         return of(null).pipe(mergeMap(() => {
 
             if(request.url.endsWith('/auth') && request.method == 'POST'){
                 let userAuthenticate = users.filter(user => {
-                    console.log(user, request);
                     return user.email === request.body.email && user.password === request.body.password;
                 });
-                console.log(userAuthenticate );
+                // console.log(userAuthenticate );
                 if (userAuthenticate.length) {
+                    userAuthenticate[0]['token'] = Math.random().toString(36).substring(2);
                     return of(new HttpResponse({ 
                         status: 200, 
                         body: userAuthenticate[0] 
@@ -116,15 +116,13 @@ class FakeBackendInterceptor implements HttpInterceptor {
              
         }))
  
-        // call materialize and dematerialize to ensure delay even if an error is thrown (https://github.com/Reactive-Extensions/RxJS/issues/648)
         .pipe(materialize())
-        .pipe(delay(500))
+        .pipe(delay(1000))
         .pipe(dematerialize());
     }
 }
  
 export let fakeBackendProvider = {
-    // use fake backend in place of Http service for backend-less development
     provide: HTTP_INTERCEPTORS,
     useClass: FakeBackendInterceptor,
     multi: true

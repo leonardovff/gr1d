@@ -20,7 +20,7 @@ export class AuthService {
     }
   }
   private getUserFromStorage(){
-    let data = localStorage.getItem('user');
+    let data = localStorage.getItem('user_authenticated');
     if(!data) return null;
     data = JSON.parse(data);
     return this.user;
@@ -29,13 +29,14 @@ export class AuthService {
     this.currentUser = user;
     this.user.next(user);
     if(toPersist){
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('user_authenticated', JSON.stringify(user));
     }
   }
   login(data: object): Promise<any> { 
     return new Promise((resolve, reject) => {
       this.http
       .post(environment.api + 'auth', data).subscribe(res => {
+        this.setUser(res);
         resolve();
       }, error => {
         reject();

@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
-import { CustomMaterialModuleModule } from './modules/custom-material-module/custom-material-module.module';
+import { CustomMaterialModule } from './modules/custom-material/custom-material.module'
 
 import { ApiInterceptor } from './interceptors/api.interceptor';
 import { fakeBackendProvider } from './interceptors/fake-backend.interceptor';
@@ -26,7 +26,7 @@ import { FeedbackErrorInputPipe } from './pipes/feedback-error-input.pipe';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CustomMaterialModuleModule,
+    CustomMaterialModule,
     ReactiveFormsModule, 
     FormsModule
   ],

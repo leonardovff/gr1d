@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 
@@ -26,7 +27,8 @@ export class LoginComponent {
 
   constructor(
     private snackBar: MatSnackBar,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
     
   }
@@ -40,6 +42,7 @@ export class LoginComponent {
     this.isLoading = true;
     this.auth.login(this.form.value).then(res => {
       this.feedbackLogin('Login realizado com sucesso');
+      this.router.navigate(['/']);
     }).catch(err => {
       this.feedbackLogin('Login e/ou senha incorreta');
     });
