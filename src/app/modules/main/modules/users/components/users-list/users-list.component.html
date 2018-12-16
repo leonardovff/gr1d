@@ -14,7 +14,7 @@
 </a>
 <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <mat-list>
-    <a mat-list-item routerLink="/{{user.id}}" *ngFor="let user of users">
+    <a mat-list-item routerLink="{{user.id}}" *ngFor="let user of users">
         {{ user?.name }} 
         <mat-icon>chevron_right</mat-icon>
     </a>

@@ -65,17 +65,17 @@ export class UsersFormComponent implements AfterViewInit {
     this.isLoading = true;
     this.http.post('users' + (this.id ? '/' + this.id : ''), this.form.value)
       .subscribe(res => {
+        let id = this.id;
+        setTimeout(()=>{
+          this.snack.open(id ? 'Usuário editado com sucesso' : 'Usuário adicionado com sucesso', '', {
+            duration: 3000
+          })
+        },400);
         this.isLoading = false;
-        console.log(res);
-        if(!this.id){
+        if(!id){
           this.id = res['id'];
         }
         this.dialogRef.close(0);
-        setTimeout(()=>{
-          this.snack.open('Usuário editado com sucesso', '', {
-            duration: 3000
-          })
-        },800);
       }, () => {
         this.isLoading = false;
         this.snack.open('Erro ao salvar os dados do usuário', '', {
@@ -90,7 +90,7 @@ export class UsersFormComponent implements AfterViewInit {
     });
     this.dialogRef.afterClosed().subscribe(res =>{
       if(!res || res == 2 ){
-        this.router.navigate(["./../"+ ( this.id ? this.id : '')]);
+        this.router.navigate(["./"+ ( this.id ? this.id : '')]);
       }
     });
   }

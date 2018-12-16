@@ -19,7 +19,7 @@ export class MainComponent implements OnDestroy {
   menu = [{
     'title': 'Clientes',
     'icon': 'account_circle',
-    'router': '/users'
+    'router': '/usuarios'
   },{
     'title': 'Sair',
     'icon': 'exit_to_app',
