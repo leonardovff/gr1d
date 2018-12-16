@@ -2,11 +2,11 @@
 <ng-template class="sample-quantitative" #dialogTemplate>
   <mat-toolbar color="primary">
     <a [disabled]="isLoading" mat-icon-button title="Cancelar para visualização do usuário"
-     class="back" (click)="isLoading ? '' : dialogRef.close(0)" matTooltip="Editar cliente">
+     class="back" (click)="isLoading ? '' : dialogRef.close( this.id ? 0 : 2)" matTooltip="Editar cliente">
       <mat-icon>close</mat-icon>
     </a>
     <h3>Edição de Cliente</h3>
-    <button mat-flat-button  [disabled]="!form.value" title="Salvar modificações"  
+    <button mat-flat-button  [disabled]="!form.valid" title="Salvar modificações"  
         class="save" (click)="save()" matTooltip="Editar cliente">
       SALVAR
     </button>
@@ -14,9 +14,10 @@
   <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
   <form (ngSubmit)="save()" [formGroup]="form">
       <mat-form-field appearance="outline">
-          <input matInput formControlName="name" type="text" maxlength="50" 
+          <input matInput #name formControlName="name" type="text" maxlength="50" 
               placeholder="Informe o nome">
           <mat-label>Nome</mat-label>
+          <mat-hint align="end">{{name.value.length}} / 50</mat-hint>
           <mat-error *ngIf="form.get('name').invalid">
               {{form.get('name').errors | feedbackErrorInput}}
           </mat-error>
@@ -30,13 +31,14 @@
           </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-          <input matInput formControlName="password" [type]="isPasswordHide ? 'password' : 'text'" 
+          <input matInput #password formControlName="password" [type]="isPasswordHidden ? 'password' : 'text'" 
                   placeholder="Informe a senha da conta" maxlength="50">
           <mat-label>Senha</mat-label>
-          <button matSuffix mat-icon-button [title]="isPasswordHide ? 'Mostrar senha' : 'Esconder senha'" 
-              type="button" (click)="isPasswordHide = !isPasswordHide">
-              <mat-icon>{{isPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          <button matSuffix mat-icon-button [title]="isPasswordHidden ? 'Mostrar senha' : 'Esconder senha'" 
+              type="button" (click)="isPasswordHidden = !isPasswordHidden">
+              <mat-icon>{{isPasswordHidden ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
+          <mat-hint align="end">{{password.value.length}} / 50</mat-hint>
           <mat-error *ngIf="form.get('password').invalid">
               {{form.get('password').errors | feedbackErrorInput}}
           </mat-error>

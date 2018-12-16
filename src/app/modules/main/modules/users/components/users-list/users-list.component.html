@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <button (click)="sidenav.toogled.emit()" class="menu" mat-icon-button title="Procurar usuário" type="button">
+    <button (click)="sidenav.toogled.emit()" class="menu" mat-icon-button title="Abrir menu" type="button">
         <mat-icon>menu</mat-icon>
     </button>
     <h2>Clientes</h2>
@@ -9,9 +9,9 @@
         <mat-icon>search</mat-icon>
     </a>
 </mat-toolbar>
-<button color="accent" mat-fab title="Cadastrar usuário">
+<a color="accent" routerLink="add" mat-fab title="Cadastrar usuário">
     <mat-icon>add</mat-icon>
-</button>
+</a>
 <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <mat-list>
     <a mat-list-item routerLink="/{{user.id}}" *ngFor="let user of users">

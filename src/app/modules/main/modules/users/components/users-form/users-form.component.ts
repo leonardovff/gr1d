@@ -14,7 +14,7 @@ export class UsersFormComponent implements AfterViewInit {
   user = null;
   isLoading: boolean = false;
   id = null;
-
+  isPasswordHidden: boolean = true;
   form:FormGroup = new FormGroup({
     'name': new FormControl(null, [
       Validators.required, 
@@ -61,12 +61,15 @@ export class UsersFormComponent implements AfterViewInit {
       });
   }
   save(){
-    // console.log('entrou')
-    if(this.form.invalid) return false;
+    if(!this.form.valid) return false;
     this.isLoading = true;
     this.http.post('users' + (this.id ? '/' + this.id : ''), this.form.value)
       .subscribe(res => {
         this.isLoading = false;
+        console.log(res);
+        if(!this.id){
+          this.id = res['id'];
+        }
         this.dialogRef.close(0);
         setTimeout(()=>{
           this.snack.open('Usuário editado com sucesso', '', {
@@ -86,8 +89,8 @@ export class UsersFormComponent implements AfterViewInit {
       maxWidth: "auto"
     });
     this.dialogRef.afterClosed().subscribe(res =>{
-      if(!res ){
-        this.router.navigate(["./../"+this.id]);
+      if(!res || res == 2 ){
+        this.router.navigate(["./../"+ ( this.id ? this.id : '')]);
       }
     });
   }

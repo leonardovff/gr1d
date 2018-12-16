@@ -17,7 +17,6 @@ export class UsersListComponent implements OnInit {
     private sidenav: SidenavService
   ) { }
   ngOnInit() {
-    console.log("entrou");
     this.loadUsers();
   }
   loadUsers(){

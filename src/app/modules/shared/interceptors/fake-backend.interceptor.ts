@@ -108,23 +108,17 @@ class FakeBackendInterceptor implements HttpInterceptor {
             }
  
             // register user
-            if (request.url.endsWith('/users/register') && request.method === 'POST') {
+            if (request.url.endsWith('/users') && request.method === 'POST') {
                 // get new user object from post body
+                
                 let newUser = request.body;
- 
-                // validation
-                let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
-                if (duplicateUser) {
-                    return throwError({ error: { message: 'Username "' + newUser.username + '" is already taken' } });
-                }
- 
-                // save new user
-                newUser.id = users.length + 1;
+                users = users.sort((a,b) => b.id - a.id);
+                newUser.id = users[0].id + 1;
                 users.push(newUser);
                 localStorage.setItem('users', JSON.stringify(users));
  
                 // respond 200 OK
-                return of(new HttpResponse({ status: 200 }));
+                return of(new HttpResponse({ status: 200, body: {id: newUser.id }}));
             }
  
             // delete user

@@ -43,7 +43,6 @@ export class UsersViewComponent implements AfterViewInit {
     });
     this.dialogRef.afterClosed().subscribe(res =>{
       if(!res){
-        console.log('' + this.user.id);
         this.router.navigate(['./../']);
       }
     });

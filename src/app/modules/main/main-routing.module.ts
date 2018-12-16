@@ -8,10 +8,10 @@ const routes: Routes = [{
     component: MainComponent,
     children: [
         {
-            path: 'users', loadChildren: './modules/users/users.module#UsersModule',
+            path: 'usuarios', loadChildren: './modules/users/users.module#UsersModule',
         },
         {
-            path: '', redirectTo: 'users'
+            path: '', redirectTo: 'usuarios'
         }
     ]
 }];
