@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, TemplateRef, AfterViewInit } from '@angul
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-users-form',
@@ -12,6 +13,26 @@ export class UsersFormComponent implements AfterViewInit {
   @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
   user = null;
   isLoading: boolean = false;
+  id = null;
+
+  form:FormGroup = new FormGroup({
+    'name': new FormControl(null, [
+      Validators.required, 
+      Validators.maxLength(100)
+    ]), 
+    'password': new FormControl(null, [
+      Validators.required,
+      Validators.maxLength(50)
+    ]),
+    'email': new FormControl(null, [
+      Validators.required, 
+      Validators.email
+    ]),
+    'phone': new FormControl(null, [
+      Validators.required
+    ])
+  })
+
   constructor(
     private dialog: MatDialog, 
     private http: HttpClient,
@@ -21,10 +42,16 @@ export class UsersFormComponent implements AfterViewInit {
   ) { }
   dialogRef = null;
   ngAfterViewInit() {
+
+    setTimeout(() => {
+      this.open();
+    });
+    this.id = this.route.snapshot.params['id'];
+    if(!this.id) return this.id = null;
     this.isLoading = true;
-    this.http.get('users/' + this.route.snapshot.params['id'])
+    this.http.get('users/' + this.id)
       .subscribe(res => {
-        this.user = res;
+        this.form.patchValue(res);
         this.isLoading = false;
       }, error => {
         this.isLoading = false;
@@ -32,17 +59,36 @@ export class UsersFormComponent implements AfterViewInit {
           duration: 2000
         })
       });
-    setTimeout(() => {
-      this.open();
-    });
   }
+  save(){
+    // console.log('entrou')
+    if(this.form.invalid) return false;
+    this.isLoading = true;
+    this.http.post('users' + (this.id ? '/' + this.id : ''), this.form.value)
+      .subscribe(res => {
+        this.isLoading = false;
+        this.dialogRef.close(0);
+        setTimeout(()=>{
+          this.snack.open('Usuário editado com sucesso', '', {
+            duration: 3000
+          })
+        },800);
+      }, () => {
+        this.isLoading = false;
+        this.snack.open('Erro ao salvar os dados do usuário', '', {
+          duration: 3000
+        })
+      });
+    }
   open() {
     this.dialogRef = this.dialog.open(this.dialogTemplate, {
       panelClass: 'modalActions',
       maxWidth: "auto"
     });
-    this.dialogRef.afterClosed().subscribe(()=>{
-      this.router.navigate(['./../']);
+    this.dialogRef.afterClosed().subscribe(res =>{
+      if(!res ){
+        this.router.navigate(["./../"+this.id]);
+      }
     });
   }
 }

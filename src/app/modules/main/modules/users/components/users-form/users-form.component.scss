@@ -1,24 +1,18 @@
-mat-toolbar button.back{
-    margin-right: 1em;
-}
-a.edit{
-    margin-left: auto;
+mat-toolbar {  
+    a.back{
+        margin-right: 1em;
+    }
+    button.save{
+        margin-left: auto;
+    }
 }
 @media(min-width: 70em){
     h3{
         padding-right: 1em;
     }       
 }
-mat-list {
-    padding: 1.2em 0;
-    mat-icon, h4, p{
-        color: #323232;
-    }
-    mat-list-item{
-        box-sizing: border-box;
-        padding-left: 0.5em; 
-        h4{
-            margin-bottom: 0.5em;
-        }
-    }
+form{
+    display: flex;
+    padding: 1.5em 1em 1em;
+    flex-flow: column;
 }

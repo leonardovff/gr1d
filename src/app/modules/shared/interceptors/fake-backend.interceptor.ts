@@ -64,10 +64,43 @@ class FakeBackendInterceptor implements HttpInterceptor {
                     let urlParts = request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     let matchedUsers = users.filter(user => { return user.id === id; });
-                    console.log(matchedUsers);
                     let user = matchedUsers.length ? matchedUsers[0] : null;
  
                     return of(new HttpResponse({ status: 200, body: user }));
+                } else {
+                    // return 401 not authorised if token is null or invalid
+                    return throwError({ error: { message: 'Unauthorised' } });
+                }
+            }
+ 
+            // get user by id
+            if (request.url.match(/\/users\/\d+$/) && request.method === 'POST') {
+                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
+                if (request.headers.get('Authorization') === 'Bearer fake_bearer_token') {
+                    // find user by id in users array
+                    let urlParts = request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length - 1]);
+                    let flag = false;
+                    users = users.map(user => { 
+                        if(user.id == id){
+                            flag = true;
+                            return {
+                                id: id,
+                                name: request.body.name,
+                                email: request.body.email,
+                                password: request.body.password,
+                                phone: request.body.phone
+                            }
+                        }
+                        return user; 
+                    });
+                    if(!flag){
+                        return throwError({ error: { message: 'Not found' } });
+                    }
+                    // save new user
+                    localStorage.setItem('users', JSON.stringify(users));
+
+                    return of(new HttpResponse({ status: 200, body: {message: "Success"} }));
                 } else {
                     // return 401 not authorised if token is null or invalid
                     return throwError({ error: { message: 'Unauthorised' } });

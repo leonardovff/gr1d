@@ -41,8 +41,11 @@ export class UsersViewComponent implements AfterViewInit {
       panelClass: 'modalActions',
       maxWidth: "auto"
     });
-    this.dialogRef.afterClosed().subscribe(()=>{
-      this.router.navigate(['./../']);
+    this.dialogRef.afterClosed().subscribe(res =>{
+      if(!res){
+        console.log('' + this.user.id);
+        this.router.navigate(['./../']);
+      }
     });
   }
 }

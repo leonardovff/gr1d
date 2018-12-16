@@ -1,11 +1,11 @@
 
 <ng-template class="sample-quantitative" #dialogTemplate>
   <mat-toolbar color="primary">
-    <button class="back" (click)="dialogRef.close()" mat-icon-button matTooltip="Editar cliente">
+    <button class="back" (click)="dialogRef.close(0)" mat-icon-button matTooltip="Editar cliente">
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h3>Visualização de Cliente</h3>
-    <a [disabled]="!user" class="edit" (click)="dialogRef.close()" 
+    <a [disabled]="!user" class="edit" (click)="dialogRef.close(1)" 
         routerLink="edit" mat-icon-button matTooltip="Editar cliente">
       <mat-icon>edit</mat-icon>
     </a>
