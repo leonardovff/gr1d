@@ -1,31 +1,48 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
+
+import { AuthService } from './../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-  isPasswordHide = true;
+export class LoginComponent {
+  isPasswordHide:boolean = true;
+  isLoading: boolean = false;
 
-  form = new FormGroup({
-    'email': new FormControl(null, [
+  form:FormGroup = new FormGroup({
+    'email': new FormControl('leonardovff@gmail.com', [
       Validators.required, 
       Validators.maxLength(191),
       Validators.email
     ]),
-    'password': new FormControl(null, [
+    'password': new FormControl('123456', [
       Validators.required
     ])
   })
 
-  constructor() { }
-
-  ngOnInit() {
-
+  constructor(
+    private snackBar: MatSnackBar,
+    private auth: AuthService
+  ) {
+    
+  }
+  feedbackLogin(msg: string){
+    this.snackBar.open(msg, '', {
+      duration: 3500
+    });
+    this.isLoading = false;
   }
   login(){
+    this.isLoading = true;
+    this.auth.login(this.form.value).then(res => {
+      this.feedbackLogin('Login realizado com sucesso');
+    }).catch(err => {
+      this.feedbackLogin('Login e/ou senha incorreta');
+    });
   }
 
 }

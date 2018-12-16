@@ -1,7 +1,8 @@
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 <h1><img src="assets/img/logo.svg" alt="Logo da GR1D"></h1>
 <form (ngSubmit)="login()" [formGroup]="form">
     <mat-form-field appearance="fill">
-        <input matInput formControlName="email" type="email" 
+        <input matInput formControlName="email" type="email" maxlength="50" 
             placeholder="Informe o seu endereço de e-mail">
         <mat-icon matPrefix>account_circle</mat-icon>
         <mat-label>E-mail</mat-label>
@@ -11,15 +12,17 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
         <input matInput formControlName="password" [type]="isPasswordHide ? 'password' : 'text'" 
-                placeholder="Informe a senha da sua conta" max="50">
+                placeholder="Informe a senha da sua conta" maxlength="50">
         <mat-label>Senha</mat-label>
         <mat-icon matPrefix>fingerprint</mat-icon>
-        <button matSuffix type="button" mat-icon-button (click)="isPasswordHide = !isPasswordHide">
+        <button [title]="isPasswordHide ? 'Mostrar senha' : 'Esconder senha'" matSuffix type="button" mat-icon-button (click)="isPasswordHide = !isPasswordHide">
             <mat-icon>{{isPasswordHide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
         <mat-error *ngIf="form.get('password').invalid">
             {{form.get('password').errors | feedbackErrorInput}}
         </mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary">ENTRAR</button>
+    <button type="submit" mat-raised-button color="primary" [disabled]="isLoading">
+        ENTRAR
+    </button>
 </form>
