@@ -31,7 +31,8 @@ import { ShowNamePipe } from './pipes/show-name.pipe';
     FormsModule,
     HttpClientModule,
     FeedbackErrorInputPipe,
-    ShowNamePipe
+    ShowNamePipe,
+    MaskDirective
   ],
   providers: [
     {

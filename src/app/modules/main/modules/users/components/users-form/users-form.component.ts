@@ -90,7 +90,7 @@ export class UsersFormComponent implements AfterViewInit {
     });
     this.dialogRef.afterClosed().subscribe(res =>{
       if(!res || res == 2 ){
-        this.router.navigate(["./"+ ( this.id ? this.id : '')]);
+        this.router.navigate(["./"]);
       }
     });
   }

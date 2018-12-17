@@ -22,12 +22,13 @@ const routes: Routes = [
     loadChildren: './modules/main/main.module#MainModule',
     canActivate: [AuthGuard],
     pathMatch: 'prefix',
+    runGuardsAndResolvers: 'always'
   },
   { path: '**', redirectTo: ''},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

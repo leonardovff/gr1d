@@ -44,7 +44,7 @@
           </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-          <input matInput formControlName="phone" type="telefone" maxlength="50" 
+          <input matInput formControlName="phone" maxlength="17" appMask type="telefone"
               placeholder="Informe o telefone">
           <mat-label>Telefone</mat-label>
           <mat-error *ngIf="form.get('phone').invalid">

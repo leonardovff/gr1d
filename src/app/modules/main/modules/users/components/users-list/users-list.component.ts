@@ -1,27 +1,37 @@
-import { Component, OnInit, ViewChild, Renderer, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer, ElementRef, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { SidenavService } from 'src/app/modules/main/main/sidenav.service';
+import { Router, NavigationEnd } from '@angular/router';
 @Component({
 
   selector: 'users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
   @ViewChild('name') name:  ElementRef;
   users: any = null;
   usersCopy: any = null;
   isLoading: boolean = false;
   isSearchActived: boolean = false;
   stringToSearch = "";
+  navigationSubscription = null;
   constructor(
     private http: HttpClient,
     private snack: MatSnackBar,
     private sidenav: SidenavService,
-    private renderer: Renderer
+    private renderer: Renderer,
+    private router: Router
   ) { }
   ngOnInit() {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        if(e.url == "/"){
+          this.loadUsers();
+        }
+      }
+    });
     this.loadUsers();
   }
   showSearch(){
@@ -55,6 +65,11 @@ export class UsersListComponent implements OnInit {
         })
       }
     );
+  }
+  ngOnDestroy() {
+    if (this.navigationSubscription) {  
+       this.navigationSubscription.unsubscribe();
+    }
   }
 
 }

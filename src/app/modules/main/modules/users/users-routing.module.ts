@@ -9,6 +9,7 @@ const routes: Routes = [
   {
     path: '', 
     component: UsersListComponent,
+    runGuardsAndResolvers: 'always',
     children: [
       {
         path: 'add',
