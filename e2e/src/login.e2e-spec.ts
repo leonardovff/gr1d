@@ -38,4 +38,16 @@ describe('login in application', () => {
       expect(page.getFeedbackLogin()).toEqual('E-mail e/ou senha incorreta');
     });
   });
+
+  it('should valid authenticate form', () => {
+    const arrange = {
+      email: "saldanha@",
+      password: ""
+    }
+    page.setLoginData(arrange);
+    page.login().then(()=>{
+      expect(page.getHintInput(1)).toEqual('O email fornecido é inválido');
+      expect(page.getHintInput(2)).toEqual('O campo é obrigatório');
+    })
+  });
 });

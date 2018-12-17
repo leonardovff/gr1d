@@ -3,7 +3,9 @@ import { browser, by, element, protractor } from 'protractor';
 export class LoginPage {
   setLoginData(data){
     element(by.css('app-login input[type="email"]')).sendKeys(data.email);
-    element(by.css('app-login input[type="password"]')).sendKeys(data.password);
+    if(data.password){
+      element(by.css('app-login input[type="password"]')).sendKeys(data.password);
+    }
   }
   login(){
     element(by.css('app-login button[type="submit"]')).click();
@@ -16,6 +18,9 @@ export class LoginPage {
   }
   getFeedbackLogin(){
     return this.getSnackBar().getText();
+  }
+  getHintInput(e){
+    return element(by.css(`mat-form-field:nth-child(${e}) mat-error`)).getText();
   }
   private getSnackBar(){
     return element(by.css('simple-snack-bar span'));
