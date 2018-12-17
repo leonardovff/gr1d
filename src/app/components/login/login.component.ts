@@ -34,7 +34,7 @@ export class LoginComponent {
   }
   feedbackLogin(msg: string){
     this.snackBar.open(msg, '', {
-      duration: 3500
+      duration: 100000
     });
     this.isLoading = false;
   }
