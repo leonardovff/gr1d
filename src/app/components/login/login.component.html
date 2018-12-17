@@ -23,7 +23,7 @@
             {{form.get('password').errors | feedbackErrorInput}}
         </mat-error>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="accent" [disabled]="isLoading">
+    <button type="submit" mat-raised-button color="accent" [disabled]="isLoading || !form.valid">
         ENTRAR
     </button>
 </form>
