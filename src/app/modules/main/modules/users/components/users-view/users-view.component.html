@@ -5,7 +5,12 @@
       <mat-icon>arrow_back</mat-icon>
     </button>
     <h3>Visualização de Cliente</h3>
-    <a [disabled]="!user" class="edit" (click)="dialogRef.close(1)" 
+    
+    <a [disabled]="isLoading" class="delete" (click)="delete()" 
+         mat-icon-button matTooltip="Deletar cliente">
+      <mat-icon>delete</mat-icon>
+    </a>
+    <a [disabled]="isLoading" class="edit" (click)="dialogRef.close(1)" 
         routerLink="editar" mat-icon-button matTooltip="Editar cliente">
       <mat-icon>edit</mat-icon>
     </a>

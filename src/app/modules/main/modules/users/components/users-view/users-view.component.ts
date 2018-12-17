@@ -28,13 +28,29 @@ export class UsersViewComponent implements AfterViewInit {
         this.isLoading = false;
       }, error => {
         this.isLoading = false;
-        this.snack.open('Erro ao carregar os dados do usuário', '', {
-          duration: 2000
-        })
+        this.feedbackActions('Erro ao carregar os dados do usuário');
       });
     setTimeout(() => {
       this.open();
     });
+  }
+  delete() {
+    this.isLoading = true;
+    this.http.delete('users/' + this.route.snapshot.params['id'])
+      .subscribe(res => {
+        this.user = res;
+        this.isLoading = false;
+        this.feedbackActions('Usuário deletado com sucesso');
+        this.dialogRef.close(0);
+      }, error => {
+        this.isLoading = false;
+        this.feedbackActions('Erro ao deletar o usuário');
+      });
+  }
+  feedbackActions(msg: string){
+    this.snack.open(msg, '', {
+      duration: 2000
+    })
   }
   open() {
     this.dialogRef = this.dialog.open(this.dialogTemplate, {

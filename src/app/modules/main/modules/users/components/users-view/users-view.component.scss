@@ -1,13 +1,13 @@
-mat-toolbar button.back{
-    margin-right: 1em;
-}
-a.edit{
+a.delete{
     margin-left: auto;
 }
 @media(min-width: 70em){
     h3{
         padding-right: 1em;
     }       
+    mat-toolbar button.back{
+        margin-right: 1em;
+    }
 }
 mat-list {
     padding: 1.2em 0;
