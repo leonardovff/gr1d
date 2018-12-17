@@ -34,9 +34,10 @@ describe('login in application', () => {
       email: "saldanha@gr1d.io",
       password: '1234566'
     }
+    page.setLoginData(arrange);
     page.login().then(()=>{
       expect(page.getFeedbackLogin()).toEqual('E-mail e/ou senha incorreta');
-    });
+    })
   });
 
   it('should valid authenticate form', () => {
@@ -45,9 +46,12 @@ describe('login in application', () => {
       password: ""
     }
     page.setLoginData(arrange);
-    page.login().then(()=>{
-      expect(page.getHintInput(1)).toEqual('O email fornecido é inválido');
-      expect(page.getHintInput(2)).toEqual('O campo é obrigatório');
+    page.unfocusFields().then(()=>{
+      setTimeout(()=>{
+        expect(page.getHintInput(1)).toEqual('O email fornecido é inválido');
+        expect(page.getHintInput(2)).toEqual('O campo é obrigatório');
+        expect(page.loginButton().getAttribute('disabled')).toEqual(true);
+      }, 1000);
     })
   });
 });
