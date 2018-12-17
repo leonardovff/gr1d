@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CustomMaterialModule } from './custom-material.module';
 
 import { ApiInterceptor } from './interceptors/api.interceptor';
-import { fakeBackendProvider } from './interceptors/fake-backend.interceptor';
+import { FakeBackendInterceptor } from './interceptors/fake-backend.interceptor';
 
 import { FeedbackErrorInputPipe } from './pipes/feedback-error-input.pipe';
 import { MaskDirective } from './directives/mask.directive';
@@ -39,8 +39,12 @@ import { ShowNamePipe } from './pipes/show-name.pipe';
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
       multi: true
-    }, 
-    fakeBackendProvider
+    }, {
+
+      provide: HTTP_INTERCEPTORS,
+      useClass: FakeBackendInterceptor,
+      multi: true
+    }
   ]
 })
 export class SharedModule { }

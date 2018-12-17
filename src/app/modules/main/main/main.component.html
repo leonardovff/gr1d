@@ -1,5 +1,5 @@
 <mat-drawer-container [autosize]="true" #matDrawerContainer class="example-container">
-    <mat-drawer #matDrawer [mode]="isMobile.matches ? 'over' : 'side'" [opened]="sidenav.isOpened || !isMobile.matches">
+    <mat-drawer #matDrawer [mode]="isMobile.matches ? 'over' : 'side'" [opened]="!isMobile.matches">
         <mat-toolbar color="primary">
             <mat-toolbar-row>
                 <img src="assets/img/avatar.png" alt="Usuário">

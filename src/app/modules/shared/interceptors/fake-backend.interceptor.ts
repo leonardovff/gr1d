@@ -6,7 +6,7 @@ import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { Users } from './users-data';
 
 @Injectable()
-class FakeBackendInterceptor implements HttpInterceptor {
+export class FakeBackendInterceptor implements HttpInterceptor {
  
     constructor() { }
  
@@ -149,9 +149,3 @@ class FakeBackendInterceptor implements HttpInterceptor {
         .pipe(dematerialize());
     }
 }
- 
-export let fakeBackendProvider = {
-    provide: HTTP_INTERCEPTORS,
-    useClass: FakeBackendInterceptor,
-    multi: true
-};
