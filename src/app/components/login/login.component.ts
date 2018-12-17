@@ -41,7 +41,7 @@ export class LoginComponent {
   login(){
     this.isLoading = true;
     this.auth.login(this.form.value).then(res => {
-      this.feedbackLogin('E-mail realizado com sucesso');
+      this.feedbackLogin('Login realizado com sucesso');
       this.router.navigate(['/']);
     }).catch(err => {
       this.feedbackLogin('E-mail e/ou senha incorreta');
