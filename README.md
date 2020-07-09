@@ -1,4 +1,4 @@
-# Gr1d
+# Angular with CRUD, Auth, Guard, E2E test and interceptors.
 
 ## Fakebackend
 The fakebackend is in shared.module.ts as a provider. 
